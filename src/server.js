@@ -4,11 +4,11 @@ const app = express()
 const { config } = require('./config/index')
 
 app.get('/', (req, res) => {
-	res.send('Hello world')
+  res.send('Hello world')
 })
 
 app.get('/juanca', (req, res) => {
-	res.send('Hello Juanca')
+  res.send('Hello Juanca')
 })
 
 app.listen(config.port, () => {
