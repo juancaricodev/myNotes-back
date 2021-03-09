@@ -120,13 +120,16 @@ app.get('/api/notes/:id', (req, res) => {
   res.json(note)
 })
 
-app.post('/api/notes', (req, res) => {
+const generateId = () => {
   const maxId = notes.length > 0
     ? Math.max(...notes.map(n => n.id))
     : 0
+  return maxId + 1
+}
 
+app.post('/api/notes', (req, res) => {
   const note = req.body
-  note.id = maxId + 1
+  note.id = generateId()
 
   notes = notes.concat(note)
 
