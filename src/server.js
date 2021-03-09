@@ -112,6 +112,12 @@ app.get('/api/notes', (req, res) => {
   res.json(notes)
 })
 
+app.get('/api/notes/:id', (req, res) => {
+  const id = Number(req.params.id)
+  const note = notes.find(n => n.id === id)
+  res.json(note)
+})
+
 app.listen(config.port, () => {
   console.log(`Server listening on port: ${config.port}`)
 })
