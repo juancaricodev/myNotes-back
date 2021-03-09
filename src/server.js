@@ -128,8 +128,15 @@ const generateId = () => {
 }
 
 app.post('/api/notes', (req, res) => {
-  const note = req.body
-  note.id = generateId()
+  const body = req.body
+
+  const note = {
+    id: generateId(),
+    content: body.content,
+    date: new Date(),
+    important: body.important || false,
+    deleted: false
+  }
 
   notes = notes.concat(note)
 
