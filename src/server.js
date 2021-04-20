@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 
 const requestLogger = (req, res, next) => {
@@ -10,6 +11,7 @@ const requestLogger = (req, res, next) => {
 }
 
 app.use(express.json())
+app.use(cors())
 app.use(requestLogger)
 
 const { config } = require('./config/index')
