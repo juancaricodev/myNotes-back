@@ -5,7 +5,7 @@ const { config } = require('./config/index')
 const app = express()
 
 // Mongoose - start
-const url = `mongodb+srv://admin:${password}@mynotescluster.fn2my.mongodb.net/my-notes?retryWrites=true`
+const url = `mongodb+srv://admin:${config.password}@mynotescluster.fn2my.mongodb.net/my-notes?retryWrites=true`
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
