@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://admin:${password}@mynotescluster.fn2my.mongodb.net/test?retryWrites=true`
+const url = `mongodb+srv://admin:${password}@mynotescluster.fn2my.mongodb.net/my-notes?retryWrites=true`
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
