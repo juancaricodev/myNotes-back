@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const { mongodb } = require('./config/index')
+const { mongodb } = require('../config/index')
 
-const url = `mongodb+srv://admin:${mongodb.password}@mynotescluster.fn2my.mongodb.net/my-notes?retryWrites=true`
+const url = mongodb.url
 
 console.log('connecting to', url)
 
