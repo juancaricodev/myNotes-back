@@ -1,6 +1,22 @@
 const express = require('express')
 const cors = require('cors')
+const mongoose = require('mongoose')
+const { config } = require('./config/index')
 const app = express()
+
+// Mongoose - start
+const url = `mongodb+srv://admin:${password}@mynotescluster.fn2my.mongodb.net/my-notes?retryWrites=true`
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+
+const noteSchema = new mongoose.Schema({
+  content: String,
+  date: Date,
+  important: Boolean
+})
+
+const Note = mongoose.model('Note', noteSchema)
+// Mongoose - end
 
 const requestLogger = (req, res, next) => {
   console.log('Method:', req.method)
@@ -13,8 +29,6 @@ const requestLogger = (req, res, next) => {
 app.use(express.json())
 app.use(cors())
 app.use(requestLogger)
-
-const { config } = require('./config/index')
 
 let notes = [
   {
