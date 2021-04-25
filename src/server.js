@@ -129,9 +129,13 @@ app.get('/api/notes', (req, res) => {
 })
 
 app.get('/api/notes/:id', (req, res) => {
-  const id = Number(req.params.id)
-  const note = notes.find(n => n.id === id)
-  res.json(note)
+  // const id = Number(req.params.id)
+  // const note = notes.find(n => n.id === id)
+  // res.json(note)
+
+  Note.findById(req.params.id).then(note => {
+    res.json(note)
+  })
 })
 
 // const generateId = () => {
