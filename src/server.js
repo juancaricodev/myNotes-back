@@ -62,12 +62,14 @@ app.post('/api/notes', (req, res) => {
   })
 })
 
-// TODO:
-// app.delete('/api/notes/:id', (req, res) => {
-//   const id = Number(req.params.id)
-//   notes = notes.filter(n => n.id !== id)
-//   res.status(204).end()
-// })
+app.delete('/api/notes/:id', (req, res, next) => {
+  const id = req.params.id
+
+  Note
+    .findByIdAndRemove(id)
+    .then(() => res.status(204).end())
+    .catch(err => next(err))
+})
 
 const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'unknown endpoint' })
