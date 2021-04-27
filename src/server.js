@@ -45,12 +45,6 @@ app.get('/api/notes/:id', (req, res, next) => {
 app.post('/api/notes', (req, res, next) => {
   const body = req.body
 
-  // if (!body.content) {
-  //   return res.status(400).json({
-  //     error: 'content missing'
-  //   })
-  // }
-
   const note = new Note({
     content: body.content,
     important: body.important || false,
@@ -59,9 +53,7 @@ app.post('/api/notes', (req, res, next) => {
 
   note
     .save()
-    .then(savedNote => {
-      res.json(savedNote)
-    })
+    .then(savedNote => res.json(savedNote))
     .catch(err => next(err))
 })
 
