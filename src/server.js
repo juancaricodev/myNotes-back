@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const { config } = require('./config/index')
+const notFound = require('./middleware/notFound')
 // const Note = require('./models/note')
 
 const app = express()
@@ -81,11 +82,11 @@ app.use(requestLogger)
 //     .catch(err => next(err))
 // })
 
-const unknownEndpoint = (req, res) => {
-  res.status(404).send({ error: 'unknown endpoint' })
-}
+// const unknownEndpoint = (req, res) => {
+//   res.status(404).send({ error: 'unknown endpoint' })
+// }
 
-app.use(unknownEndpoint)
+app.use(notFound)
 
 const errorHandler = (err, req, res, next) => {
   console.error(err.message)
