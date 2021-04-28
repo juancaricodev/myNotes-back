@@ -3,17 +3,18 @@ const cors = require('cors')
 const { config } = require('./config/index')
 const notFound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
+const requestLogger = require('./middleware/requestLogger')
 // const Note = require('./models/note')
 
 const app = express()
 
-const requestLogger = (req, res, next) => {
-  console.log('Method:', req.method)
-  console.log('Path:  ', req.path)
-  console.log('Body:  ', req.body)
-  console.log('---')
-  next()
-}
+// const requestLogger = (req, res, next) => {
+//   console.log('Method:', req.method)
+//   console.log('Path:  ', req.path)
+//   console.log('Body:  ', req.body)
+//   console.log('---')
+//   next()
+// }
 
 app.use(express.json())
 app.use(cors())
