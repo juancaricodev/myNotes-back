@@ -1,4 +1,4 @@
-const { mongodb } = require('../config/index')
+const { mongodb } = require('./config/index')
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -6,14 +6,14 @@ const notesRouter = require('./controllers/notes')
 const requestLogger = require('./middleware/requestLogger')
 const notFound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
-const { info, error } = require('../utils/logger')
-const { Mongoose } = require('mongoose')
+const { info, error } = require('./utils/logger')
+const mongoose = require('mongoose')
 
 const mongoUrl = mongodb.url
 
 info('connecting to', mongoUrl)
 
-Mongoose
+mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
