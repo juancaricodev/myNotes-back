@@ -2,16 +2,12 @@ const notesRouter = require('express').Router()
 const Note = require('../models/note')
 
 notesRouter.get('/', (req, res) => {
-  res.send('Hello world')
-})
-
-notesRouter.get('/api/notes', (req, res) => {
   Note.find({}).then(notes => {
     res.json(notes)
   })
 })
 
-notesRouter.get('/api/notes/:id', (req, res, next) => {
+notesRouter.get('/:id', (req, res, next) => {
   const id = req.params.id
 
   Note
@@ -26,7 +22,7 @@ notesRouter.get('/api/notes/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-notesRouter.post('/api/notes', (req, res, next) => {
+notesRouter.post('', (req, res, next) => {
   const body = req.body
 
   const note = new Note({
@@ -41,7 +37,7 @@ notesRouter.post('/api/notes', (req, res, next) => {
     .catch(err => next(err))
 })
 
-notesRouter.put('/api/notes/:id', (req, res, next) => {
+notesRouter.put('/:id', (req, res, next) => {
   const id = req.params.id
   const body = req.body
 
@@ -56,7 +52,7 @@ notesRouter.put('/api/notes/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-notesRouter.delete('/api/notes/:id', (req, res, next) => {
+notesRouter.delete('/:id', (req, res, next) => {
   const id = req.params.id
 
   Note
