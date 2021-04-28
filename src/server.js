@@ -4,6 +4,7 @@ const { config } = require('./config/index')
 const notFound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
 const requestLogger = require('./middleware/requestLogger')
+const { info } = require('./utils/logger')
 // const Note = require('./models/note')
 
 const app = express()
@@ -105,5 +106,5 @@ app.use(notFound)
 app.use(errorHandler)
 
 app.listen(config.port, () => {
-  console.log(`Server listening on port: ${config.port}`)
+  info(`Server listening on port: ${config.port}`)
 })
