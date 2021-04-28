@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const { config } = require('./config/index')
-const Note = require('./models/note')
+// const Note = require('./models/note')
 
 const app = express()
 
@@ -17,69 +17,69 @@ app.use(express.json())
 app.use(cors())
 app.use(requestLogger)
 
-app.get('/', (req, res) => {
-  res.send('Hello world')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello world')
+// })
 
-app.get('/api/notes', (req, res) => {
-  Note.find({}).then(notes => {
-    res.json(notes)
-  })
-})
+// app.get('/api/notes', (req, res) => {
+//   Note.find({}).then(notes => {
+//     res.json(notes)
+//   })
+// })
 
-app.get('/api/notes/:id', (req, res, next) => {
-  const id = req.params.id
+// app.get('/api/notes/:id', (req, res, next) => {
+//   const id = req.params.id
 
-  Note
-    .findById(id)
-    .then(note => {
-      if (note) {
-        res.json(note)
-      } else {
-        res.status(404).end()
-      }
-    })
-    .catch(err => next(err))
-})
+//   Note
+//     .findById(id)
+//     .then(note => {
+//       if (note) {
+//         res.json(note)
+//       } else {
+//         res.status(404).end()
+//       }
+//     })
+//     .catch(err => next(err))
+// })
 
-app.post('/api/notes', (req, res, next) => {
-  const body = req.body
+// app.post('/api/notes', (req, res, next) => {
+//   const body = req.body
 
-  const note = new Note({
-    content: body.content,
-    important: body.important || false,
-    date: new Date()
-  })
+//   const note = new Note({
+//     content: body.content,
+//     important: body.important || false,
+//     date: new Date()
+//   })
 
-  note
-    .save()
-    .then(savedNote => res.json(savedNote))
-    .catch(err => next(err))
-})
+//   note
+//     .save()
+//     .then(savedNote => res.json(savedNote))
+//     .catch(err => next(err))
+// })
 
-app.put('/api/notes/:id', (req, res, next) => {
-  const id = req.params.id
-  const body = req.body
+// app.put('/api/notes/:id', (req, res, next) => {
+//   const id = req.params.id
+//   const body = req.body
 
-  const note = {
-    content: body.content,
-    important: body.important
-  }
+//   const note = {
+//     content: body.content,
+//     important: body.important
+//   }
 
-  Note
-    .findByIdAndUpdate(id, note, { new: true })
-    .then(updatedNote => res.json(updatedNote))
-    .catch(err => next(err))
-})
+//   Note
+//     .findByIdAndUpdate(id, note, { new: true })
+//     .then(updatedNote => res.json(updatedNote))
+//     .catch(err => next(err))
+// })
 
-app.delete('/api/notes/:id', (req, res, next) => {
-  const id = req.params.id
+// app.delete('/api/notes/:id', (req, res, next) => {
+//   const id = req.params.id
 
-  Note
-    .findByIdAndRemove(id)
-    .then(() => res.status(204).end())
-    .catch(err => next(err))
-})
+//   Note
+//     .findByIdAndRemove(id)
+//     .then(() => res.status(204).end())
+//     .catch(err => next(err))
+// })
 
 const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'unknown endpoint' })
