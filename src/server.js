@@ -4,7 +4,6 @@
 // const notFound = require('./middleware/notFound')
 // const errorHandler = require('./middleware/errorHandler')
 // const requestLogger = require('./middleware/requestLogger')
-const { info } = require('./utils/logger')
 // const Note = require('./models/note')
 
 // const app = express()
@@ -105,6 +104,13 @@ const { info } = require('./utils/logger')
 
 // app.use(errorHandler)
 
-app.listen(config.port, () => {
+const app = require('./app')
+const http = require('http')
+const config = require('./config/index')
+const { info } = require('./utils/logger')
+
+const server = http.createServer(app)
+
+server.listen(config.port, () => {
   info(`Server listening on port: ${config.port}`)
 })
