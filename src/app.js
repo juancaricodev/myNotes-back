@@ -1,10 +1,11 @@
+const { mongodb } = require('../config/index')
 const express = require('express')
+const app = express()
 const cors = require('cors')
+const notesRouter = require('./controllers/notes')
+const requestLogger = require('./middleware/requestLogger')
 const notFound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
-const requestLogger = require('./middleware/requestLogger')
-const app = express()
-const { mongodb } = require('../config/index')
 const { info, error } = require('../utils/logger')
 const { Mongoose } = require('mongoose')
 
@@ -25,6 +26,8 @@ Mongoose
 app.use(cors())
 app.use(express.json())
 app.use(requestLogger)
+
+app.use('/api/notes', notesRouter)
 
 app.use(notFound)
 app.use(errorHandler)
