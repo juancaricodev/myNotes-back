@@ -1,13 +1,13 @@
-const express = require('express')
-const cors = require('cors')
-const { config } = require('./config/index')
-const notFound = require('./middleware/notFound')
-const errorHandler = require('./middleware/errorHandler')
-const requestLogger = require('./middleware/requestLogger')
+// const express = require('express')
+// const cors = require('cors')
+// const { config } = require('./config/index')
+// const notFound = require('./middleware/notFound')
+// const errorHandler = require('./middleware/errorHandler')
+// const requestLogger = require('./middleware/requestLogger')
 const { info } = require('./utils/logger')
 // const Note = require('./models/note')
 
-const app = express()
+// const app = express()
 
 // const requestLogger = (req, res, next) => {
 //   console.log('Method:', req.method)
@@ -17,9 +17,9 @@ const app = express()
 //   next()
 // }
 
-app.use(express.json())
-app.use(cors())
-app.use(requestLogger)
+// app.use(cors())
+// app.use(express.json())
+// app.use(requestLogger)
 
 // app.get('/', (req, res) => {
 //   res.send('Hello world')
@@ -89,7 +89,7 @@ app.use(requestLogger)
 //   res.status(404).send({ error: 'unknown endpoint' })
 // }
 
-app.use(notFound)
+// app.use(notFound)
 
 // const errorHandler = (err, req, res, next) => {
 //   console.error(err.message)
@@ -103,7 +103,7 @@ app.use(notFound)
 //   next(err)
 // }
 
-app.use(errorHandler)
+// app.use(errorHandler)
 
 app.listen(config.port, () => {
   info(`Server listening on port: ${config.port}`)
