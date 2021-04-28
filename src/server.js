@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const { config } = require('./config/index')
 const notFound = require('./middleware/notFound')
+const errorHandler = require('./middleware/errorHandler')
 // const Note = require('./models/note')
 
 const app = express()
@@ -88,17 +89,17 @@ app.use(requestLogger)
 
 app.use(notFound)
 
-const errorHandler = (err, req, res, next) => {
-  console.error(err.message)
+// const errorHandler = (err, req, res, next) => {
+//   console.error(err.message)
 
-  if (err.name === 'CastError') {
-    return res.status(400).send({ error: 'malformatted id' })
-  } else if (err.name === 'ValidationError') {
-    return res.status(400).json({ error: err.message })
-  }
+//   if (err.name === 'CastError') {
+//     return res.status(400).send({ error: 'malformatted id' })
+//   } else if (err.name === 'ValidationError') {
+//     return res.status(400).json({ error: err.message })
+//   }
 
-  next(err)
-}
+//   next(err)
+// }
 
 app.use(errorHandler)
 
