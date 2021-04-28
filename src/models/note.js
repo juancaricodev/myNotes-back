@@ -1,20 +1,20 @@
 const mongoose = require('mongoose')
-const { mongodb } = require('../config/index')
-const { info, error } = require('../utils/logger')
+// const { mongodb } = require('../config/index')
+// const { info, error } = require('../utils/logger')
 
-const url = mongodb.url
+// const url = mongodb.url
 
-info('connecting to', url)
+// info('connecting to', url)
 
-mongoose
-  .connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
-  })
-  .then((res) => info('connected to MongoDB'))
-  .catch((err) => error('error connecting to MongoDB:', err.message))
+// mongoose
+//   .connect(url, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false,
+//     useCreateIndex: true
+//   })
+//   .then((res) => info('connected to MongoDB'))
+//   .catch((err) => error('error connecting to MongoDB:', err.message))
 
 const noteSchema = new mongoose.Schema({
   content: {
