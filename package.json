@@ -7,7 +7,8 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "deploy": "git push heroku main",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "test": "jest --verbose"
   },
   "keywords": [
     "Node.js",
@@ -24,6 +25,7 @@
     "mongoose": "5.12.5"
   },
   "devDependencies": {
+    "jest": "26.6.3",
     "nodemon": "2.0.7",
     "standard": "16.0.3"
   },
@@ -31,5 +33,8 @@
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
