@@ -5,7 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "deploy": "git push heroku main",
+    "logs:prod": "heroku logs --tail"
   },
   "keywords": [
     "Node.js",
