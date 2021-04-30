@@ -8,7 +8,9 @@
     "dev": "NODE_ENV=development nodemon src/server.js",
     "deploy": "git push heroku main",
     "logs:prod": "heroku logs --tail",
-    "test": "NODE_ENV=test jest --verbose --runInBand --silent"
+    "test": "NODE_ENV=test jest --verbose --runInBand --silent",
+    "test:watch": "yarn test -- --watch",
+    "test:cover": "yarn test -- --coverage"
   },
   "keywords": [
     "Node.js",
