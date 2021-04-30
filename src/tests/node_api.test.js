@@ -6,19 +6,6 @@ const Note = require('../models/note')
 
 const api = supertest(app)
 
-// const initialNotes = [
-//   {
-//     content: 'HTML is easy!',
-//     date: new Date(),
-//     important: false
-//   },
-//   {
-//     content: 'Browser can execute only Javascript',
-//     date: new Date(),
-//     important: true
-//   }
-// ]
-
 beforeEach(async () => {
   await Note.deleteMany({})
 
@@ -85,6 +72,21 @@ test('note without content is not added', async () => {
   const notesAtEnd = await helper.notesInDb()
 
   expect(notesAtEnd).toHaveLength(helper.initialNotes.length)
+})
+
+test('a specific note can be viewed', async () => {
+  const notesAtStart = await helper.notesInDb()
+
+  const noteToView = notesAtStart[0]
+
+  const resultNote = await api
+    .get(`/api/notes/${noteToView.id}`)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  const processedNoteToView = JSON.parse(JSON.stringify(noteToView))
+
+  expect(resultNote.body).toEqual(processedNoteToView)
 })
 
 afterAll(() => {
