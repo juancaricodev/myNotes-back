@@ -179,6 +179,10 @@ describe('when there is initially one user in db', () => {
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
   })
+
+  // TODO: Validation for length username
+
+  // TODO: Validation for length password
 })
 
 afterAll(() => {
