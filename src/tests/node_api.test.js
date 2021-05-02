@@ -196,7 +196,7 @@ describe('when there is initially one user in db', () => {
       .expect(400)
       .expect('Content-Type', /application\/json/)
 
-    expect(result.body.error).toContain('Path `username` is required')
+    expect(result.body.error).toContain(`Path \`username\` (\`${newUser.username}\`) is shorter`)
 
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
