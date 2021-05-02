@@ -21,6 +21,7 @@
   "author": "<juancaricodev@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "5.0.1",
     "cors": "2.8.5",
     "dotenv": "8.2.0",
     "express": "4.17.1",
@@ -36,10 +37,14 @@
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ],
-    "env": { "jest": true }
+    "env": {
+      "jest": true
+    }
   },
   "standard": {
-    "env": { "jest": true }
+    "env": {
+      "jest": true
+    }
   },
   "jest": {
     "testEnvironment": "node"
