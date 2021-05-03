@@ -180,7 +180,7 @@ describe('when there is initially one user in db', () => {
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
   })
 
-  // WIP: Validation for length username
+  // Validation for username length
   test('creation fails when username isn\'t long enough (2+ characters)', async () => {
     const usersAtStart = await helper.usersInDb()
 
@@ -202,9 +202,48 @@ describe('when there is initially one user in db', () => {
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
   })
 
-  // TODO: Validation for length password
+  // Validation for username field required
+  test('creation fails with proper status code and message if username field is empty', async () => {
+    const usersAtStart = await helper.usersInDb()
 
-  // TODO: Validation for required username
+    const newUser = {
+      name: 'Failing User',
+      password: 'salainen'
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    expect(result.body.error).toContain('Path `username` is required')
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd).toHaveLength(usersAtStart.length)
+  })
+
+  // WIP: Validation for password length
+  test('creation fails when password isn\'t long enough (6+ characters)', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      username: 'alpha',
+      name: 'Short-password User',
+      password: 'short'
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    expect(result.body.error).toContain(`Path \`password\` (\`${newUser.password}\`) is shorter`)
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd).toHaveLength(usersAtStart.length)
+  })
 
   // TODO: Validation for required password
 })
