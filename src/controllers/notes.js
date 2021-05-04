@@ -12,7 +12,7 @@ notesRouter.get('/:id', async (req, res, next) => {
   const id = req.params.id
 
   try {
-    const note = await Note.findById(id)
+    const note = await Note.findById(id).populate('user', { username: 1, name: 1 })
 
     if (note) {
       res.json(note)
